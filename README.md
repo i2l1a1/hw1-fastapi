@@ -9,4 +9,7 @@
 `uvicorn main:app --reload`
 
 ### Запуск тестов
+
+`source venv/bin/activate`
+
 `python -m unittest discover -v`
