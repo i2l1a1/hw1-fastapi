@@ -23,6 +23,11 @@
 1. `pytest` или `rm -rf allure-results && pytest` (чтобы удалить результаты предыдущих прогонов тестов).
 2. `allure serve allure-results`, чтобы открыть HTML-отчёт.
 
+### pre-commit
+
+1. `pre-commit install`.
+2. Перед коммитом `pre-commit` запустит `ruff`, `black` и `isort`. При необходимости можно запустить вручную: `pre-commit run --all-files`.
+
 ### Инструменты
 #### ruff
 `ruff check .`
@@ -32,9 +37,9 @@ _Результат выполнения я показал на скрине `ru
 #### black
 `black .`
 
-_Результат выполнения я показал на скрине `black_result.png`._
+_Результат выполнения я показал на скрине `black_results.png`._
 
 #### isort
 `isort .`
 
-_Результат выполнения я показал на скрине `black_result.png`._
+_Результат выполнения я показал на скрине `isort_results.png`._
