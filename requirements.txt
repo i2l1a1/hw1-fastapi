@@ -6,3 +6,4 @@ httpx==0.24.1
 requests==2.32.3
 pytest==7.4.4
 allure-pytest==2.13.2
+pytest-cov==4.1.0

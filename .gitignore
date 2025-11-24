@@ -4,4 +4,7 @@ test.db
 venv/
 allure-results/
 allure-report/
+.coverage
+coverage.xml
+htmlcov/
 .DS_Store

@@ -3,6 +3,7 @@ from fastapi.testclient import TestClient
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from app.db import Base, get_db
+from app.api import get_service
 from main import app
 
 TEST_DATABASE_URL = "sqlite:///:memory:"
@@ -37,3 +38,12 @@ class TestAPI(unittest.TestCase):
     def test_get_not_found(self):
         resp = self.client.get("/api/questions/9999")
         self.assertEqual(resp.status_code, 404)
+
+    def test_get_existing_question(self):
+        created = self.client.post("/api/questions", json={"title": "Keep", "body": "Me"}).json()
+        resp = self.client.get(f"/api/questions/{created['id']}")
+        self.assertEqual(resp.status_code, 200)
+        data = resp.json()
+        self.assertEqual(data["id"], created["id"])
+        self.assertEqual(data["title"], "Keep")
+        self.assertEqual(data["body"], "Me")
