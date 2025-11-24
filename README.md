@@ -12,4 +12,9 @@
 
 `source venv/bin/activate`
 
-`python -m unittest discover -v`
+`pytest`
+
+Для генерации Allure-отчёта:
+
+1. `pytest` или `rm -rf allure-results && pytest` (чтобы удалить результаты предыдущих прогонов тестов).
+2. `allure serve allure-results`, чтобы открыть HTML-отчёт.

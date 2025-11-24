@@ -2,3 +2,6 @@ __pycache__/
 test.db
 .idea/
 venv/
+allure-results/
+allure-report/
+.DS_Store
