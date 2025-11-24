@@ -1,5 +1,5 @@
-from app.repository import QuestionRepository
 from app.question import Question
+from app.repository import QuestionRepository
 from app.schemas import QuestionCreate, QuestionRead
 
 

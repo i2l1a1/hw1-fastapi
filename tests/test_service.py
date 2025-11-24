@@ -1,10 +1,12 @@
 import unittest
+
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
+
 from app.db import Base
 from app.repository import QuestionRepository
-from app.services import QuestionService
 from app.schemas import QuestionCreate
+from app.services import QuestionService
 
 TEST_DATABASE_URL = "sqlite:///:memory:"
 engine = create_engine(TEST_DATABASE_URL, connect_args={"check_same_thread": False})

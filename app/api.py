@@ -1,6 +1,7 @@
 from fastapi import APIRouter, Depends, HTTPException, status
+
 from app.schemas import QuestionCreate, QuestionRead
-from app.services import get_question_service, QuestionService
+from app.services import QuestionService, get_question_service
 
 router = APIRouter()
 
@@ -9,8 +10,12 @@ def get_service() -> QuestionService:
     return get_question_service()
 
 
-@router.post("/questions", response_model=QuestionRead, status_code=status.HTTP_201_CREATED)
-def create_question(payload: QuestionCreate, service: QuestionService = Depends(get_service)):
+@router.post(
+    "/questions", response_model=QuestionRead, status_code=status.HTTP_201_CREATED
+)
+def create_question(
+    payload: QuestionCreate, service: QuestionService = Depends(get_service)
+):
     try:
         created = service.create_question(payload)
     except Exception as e:

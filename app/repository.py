@@ -1,4 +1,4 @@
-from app.db import SessionLocal, QuestionModel
+from app.db import QuestionModel, SessionLocal
 from app.question import Question
 
 
