@@ -26,20 +26,51 @@
 ### pre-commit
 
 1. `pre-commit install`.
-2. Перед коммитом `pre-commit` запустит `ruff`, `black` и `isort`. При необходимости можно запустить вручную: `pre-commit run --all-files`.
+2. Перед коммитом `pre-commit` запустит `ruff`, `black` и `isort`. При необходимости можно запустить
+   вручную: `pre-commit run --all-files`.
 
 ### Инструменты
+
 #### ruff
+
 `ruff check .`
 
 _Результат выполнения я показал на скрине `ruff_check_results.png`._
 
 #### black
+
 `black .`
 
 _Результат выполнения я показал на скрине `black_results.png`._
 
 #### isort
+
 `isort .`
 
 _Результат выполнения я показал на скрине `isort_results.png`._
+
+### mypy
+
+_Результат выполнения `mypy .` до рефакторинга я показал на скрине `mypy_results.png`, а после рефакторинга — на скрине `mypy_results_after_refactor.png`._
+
+Что я поменял, чтобы команда `mypy .` выполнялась без ошибок:
+
+**question.py:**
+
+- Изменил тип поля `id: int` на `id: int | None = None`
+- Изменил тип поля `body: str` на `body: str = ""`
+
+**db.py:**
+
+- Добавил импорт `from sqlalchemy.orm import DeclarativeMeta`
+- Изменил `Base = declarative_base()` на `Base: DeclarativeMeta = declarative_base()`
+
+**services.py:**
+
+- Добавил `from typing import Optional`
+- Изменил параметр конструктора `repo: QuestionRepository = None` на `repo: Optional[QuestionRepository] = None`
+- Добавил типы возвращаемых
+  значений: `create_question(...) -> QuestionRead`, `get_question(...) -> Optional[QuestionRead]`
+- Добавил тип параметра `qid: int` для метода `get_question`
+- Добавил проверки `if saved.id is None` и `if q.id is None` с выбросом `ValueError`
+- Добавил тип возвращаемого значения `-> QuestionService` для функции `get_question_service`

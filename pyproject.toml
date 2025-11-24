@@ -8,3 +8,9 @@ profile = "black"
 line-length = 88
 target-version = "py313"
 
+[tool.mypy]
+python_version = "3.13"
+warn_unused_configs = true
+ignore_missing_imports = true
+explicit_package_bases = true
+
